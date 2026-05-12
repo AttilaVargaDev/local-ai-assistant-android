@@ -1,11 +1,11 @@
 package com.attilavarga.localaiassistant;
-
+import android.content.Context;
 public class AssistantEngine {
 
     private ModelClassifier modelClassifier;
 
-    public AssistantEngine() {
-        modelClassifier = new ModelClassifier();
+    public AssistantEngine(Context context) {
+        modelClassifier = new ModelClassifier(context);
     }
 
     public String generateResponse(String prompt) {

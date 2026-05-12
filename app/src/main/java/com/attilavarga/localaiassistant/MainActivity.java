@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        assistantEngine = new AssistantEngine();
+        assistantEngine = new AssistantEngine(this);
 
         promptInput = findViewById((R.id.promptInput));
         askButton = findViewById((R.id.askButton));
