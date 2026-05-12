@@ -37,6 +37,13 @@ public class ModelClassifier {
 
         Category topResult = results.get(0);
 
-        return topResult.getLabel() + " (" + topResult.getScore() + ")";
+        for (Category category : results) {
+            if (category.getScore() > topResult.getScore()) {
+                topResult = category;
+            }
+        }
+
+        return "Prediction: " + topResult.getLabel()
+                + "\nConfidence: " + String.format("%.2f", topResult.getScore());
     }
 }
