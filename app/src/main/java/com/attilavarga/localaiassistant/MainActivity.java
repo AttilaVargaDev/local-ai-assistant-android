@@ -27,11 +27,21 @@ public class MainActivity extends AppCompatActivity {
         promptInput = findViewById((R.id.promptInput));
         askButton = findViewById((R.id.askButton));
         responseText = findViewById(R.id.responseText);
+        latencyText = findViewById(R.id.latencyText);
 
         askButton.setOnClickListener(view -> {
             String prompt = promptInput.getText().toString();
+
+            long startTime = System.nanoTime();
+
             String response = assistantEngine.generateResponse(prompt);
+
+            long endTime = System.nanoTime();
+
+            double latencyMs = (endTime - startTime) / 1_000_000.0;
+
             responseText.setText(response);
+            latencyText.setText(String.format("Inference latency: %.3f ms", latencyMs));
         });
 
 
