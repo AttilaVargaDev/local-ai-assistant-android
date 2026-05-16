@@ -15,6 +15,20 @@ public class AssistantEngine {
 
         String prediction = modelClassifier.classifyPrompt(prompt);
 
-        return "Local TensorFlow Lite result:\n" + prediction;
+        String lowerPrediction = prediction.toLowerCase();
+
+        if (lowerPrediction.contains("positive")) {
+            return "Local TensorFlow Lite result:\n"
+                    + prediction
+                    + "\n\nInterpretation: The prompt appears positive based on the local on-device model.";
+        } else if (lowerPrediction.contains("negative")) {
+            return "Local TensorFlow Lite result:\n"
+                    + prediction
+                    + "\n\nInterpretation: The prompt appears negative based on the local on-device model.";
+        } else {
+            return "Local TensorFlow Lite result:\n"
+                    + prediction
+                    + "\n\nInterpretation: The model returned a classification result, but it may require further evaluation.";
+        }
     }
 }
